@@ -1,3 +1,7 @@
+import Board from "@/components/board";
+
 export default function Home() {
-  return <h1>Hello world</h1>
+  return <div className="h-screen w-screen flex justify-center items-center">
+    <Board />
+  </div>
 }
