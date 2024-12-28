@@ -1,14 +1,15 @@
 "use client"
 import findZeroSquare from "@/utils/findZeroSquare"
 import { useEffect, useState } from "react"
+import Square from "./square"
 
 const Board = () => {
   const [array, setArray] = useState<number[][]>(
     [
       [0, 0, 0, 0],
-      [0, 2, 0, 0],
+      [0, 0, 2, 0],
       [0, 0, 0, 0],
-      [2, 2, 0, 4]
+      [0, 2, 0, 0]
     ]
   )
 
@@ -147,10 +148,10 @@ const Board = () => {
     })
   }, [])
 
-  return <div className="w-[440px] h-[440px] border-t border-l border-black ">
+  return <div className="bg-[#1e242b] rounded-lg p-4 flex flex-col gap-4">
     {array.map((row, rowIndex) => {
-      return <div className="grid grid-cols-4 h-[110px]" key={rowIndex}>
-        {row.map((cell, cellIndex) => <div key={cellIndex} className="border-black border-b border-r flex justify-center items-center">{cell > 0 ? cell : ""}</div>)}
+      return <div className="grid grid-cols-4 w-[448px] h-[100px] bg-[#1e242b] gap-4" key={rowIndex}>
+        {row.map((squareNumber, squareIndex) => <Square num={squareNumber} key={squareIndex} />)}
       </div>
     })}
   </div>
