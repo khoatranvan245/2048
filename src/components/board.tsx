@@ -1,22 +1,15 @@
 "use client"
 import findZeroSquare from "@/utils/findZeroSquare"
-import { useEffect, useState } from "react"
+import React, { SetStateAction, useEffect, useState } from "react"
 import Square from "./square"
 
-const Board = () => {
-  const [array, setArray] = useState<number[][]>(
-    [
-      [0, 0, 0, 0],
-      [0, 0, 2, 0],
-      [0, 0, 0, 0],
-      [0, 2, 0, 0]
-    ]
-  )
+const Board = ({ array, setArray, setScore }: { array: number[][], setArray: React.Dispatch<React.SetStateAction<number[][]>>, setScore: React.Dispatch<React.SetStateAction<number>> }) => {
 
   const leftButtonAction = () => {
     const newArray = array
 
     for (let i = 0; i < newArray.length; i++) {
+      let sumCount = 0
       for (let j = 0; j < newArray[i].length; j++) {
         for (let k = j; k >= 0; k--) {
           if (newArray[i][k] != 0 && newArray[i][k - 1] == 0) {
@@ -24,14 +17,18 @@ const Board = () => {
             newArray[i][k] = 0
           }
           if (newArray[i][k] == newArray[i][k - 1]) {
-            newArray[i][k - 1] *= 20
+            sumCount++
+            newArray[i][k - 1] *= 2 * Math.pow(10, sumCount)
             newArray[i][k] = 0
           }
         }
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        if (newArray[i][j] % 10 == 0) newArray[i][j] /= 10
+        while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
+          newArray[i][j] = newArray[i][j] / 10
+        }
+        setScore(prev => prev + newArray[i][j])
       }
 
     }
@@ -43,6 +40,7 @@ const Board = () => {
     const newArray = array
 
     for (let i = 0; i < newArray.length; i++) {
+      let sumCount = 0
       for (let j = newArray[i].length - 1; j >= 0; j--) {
         for (let k = j; k < newArray.length; k++) {
           if (newArray[i][k] != 0 && newArray[i][k + 1] == 0) {
@@ -50,14 +48,18 @@ const Board = () => {
             newArray[i][k] = 0
           }
           if (newArray[i][k] == newArray[i][k + 1]) {
-            newArray[i][k + 1] *= 20
+            sumCount++
+            newArray[i][k + 1] *= 2 * Math.pow(10, sumCount)
             newArray[i][k] = 0
           }
         }
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        if (newArray[i][j] % 10 == 0) newArray[i][j] /= 10
+        while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
+          newArray[i][j] = newArray[i][j] / 10
+        }
+        setScore(prev => prev + newArray[i][j])
       }
     }
 
@@ -68,6 +70,7 @@ const Board = () => {
     const newArray = array
 
     for (let i = 0; i < newArray.length; i++) {
+      let sumCount = 0
       for (let j = newArray.length - 1; j >= 0; j--) {
         for (let k = j; k < newArray.length - 1; k++) {
           if (newArray[k][i] != 0 && newArray[k + 1][i] == 0) {
@@ -75,14 +78,18 @@ const Board = () => {
             newArray[k][i] = 0
           }
           if (newArray[k][i] == newArray[k + 1][i]) {
-            newArray[k + 1][i] *= 20
+            sumCount++
+            newArray[k + 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
           }
         }
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        if (newArray[j][i] % 10 == 0) newArray[j][i] /= 10
+        while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
+          newArray[j][i] = newArray[j][i] / 10
+        }
+        setScore(prev => prev + newArray[j][i])
       }
     }
 
@@ -93,6 +100,7 @@ const Board = () => {
     const newArray = array
 
     for (let i = 0; i < newArray.length; i++) {
+      let sumCount = 0
       for (let j = 0; j < newArray.length; j++) {
         for (let k = j; k > 0; k--) {
           if (newArray[k][i] != 0 && newArray[k - 1][i] == 0) {
@@ -100,14 +108,18 @@ const Board = () => {
             newArray[k][i] = 0
           }
           if (newArray[k][i] == newArray[k - 1][i]) {
-            newArray[k - 1][i] *= 2
+            sumCount++
+            newArray[k - 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
           }
         }
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        if (newArray[j][i] % 10 == 0) newArray[j][i] /= 10
+        while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
+          newArray[j][i] = newArray[j][i] / 10
+        }
+        setScore(prev => prev + newArray[j][i])
       }
 
     }
