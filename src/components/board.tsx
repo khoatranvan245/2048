@@ -7,7 +7,7 @@ const Board = ({ array, setArray, setScore }: { array: number[][], setArray: Rea
 
   const leftButtonAction = () => {
     const newArray = array
-
+    let sumPoint = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = 0; j < newArray[i].length; j++) {
@@ -25,19 +25,22 @@ const Board = ({ array, setArray, setScore }: { array: number[][], setArray: Rea
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
-          newArray[i][j] = newArray[i][j] / 10
+        if (newArray[i][j] % 10 == 0) {
+          while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
+            newArray[i][j] = newArray[i][j] / 10
+          }
+          console.log(newArray[i][j])
+          sumPoint += newArray[i][j]
         }
-        setScore(prev => prev + newArray[i][j])
       }
-
     }
-
+    setScore(prev => prev + sumPoint)
     setArray([...newArray])
   }
 
   const rightButtonAction = () => {
     const newArray = array
+    let sumPoint = 0
 
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
@@ -56,19 +59,22 @@ const Board = ({ array, setArray, setScore }: { array: number[][], setArray: Rea
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
-          newArray[i][j] = newArray[i][j] / 10
+        if (newArray[i][j] % 10 == 0) {
+          while (newArray[i][j] % 10 == 0 && newArray[i][j] != 0) {
+            newArray[i][j] = newArray[i][j] / 10
+          }
+          sumPoint += newArray[i][j]
         }
-        setScore(prev => prev + newArray[i][j])
       }
     }
 
+    setScore(prev => prev + sumPoint)
     setArray([...newArray])
   }
 
   const downButtonAction = () => {
     const newArray = array
-
+    let sumPoint = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = newArray.length - 1; j >= 0; j--) {
@@ -86,19 +92,22 @@ const Board = ({ array, setArray, setScore }: { array: number[][], setArray: Rea
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
-          newArray[j][i] = newArray[j][i] / 10
+        if (newArray[j][i] % 10 == 0) {
+          while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
+            newArray[j][i] = newArray[j][i] / 10
+          }
+          sumPoint += newArray[j][i]
         }
-        setScore(prev => prev + newArray[j][i])
       }
     }
 
+    setScore(prev => prev + sumPoint)
     setArray([...newArray])
   }
 
   const upButtonAction = () => {
     const newArray = array
-
+    let sumPoint = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = 0; j < newArray.length; j++) {
@@ -116,14 +125,17 @@ const Board = ({ array, setArray, setScore }: { array: number[][], setArray: Rea
       }
 
       for (let j = 0; j < newArray[i].length; j++) {
-        while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
-          newArray[j][i] = newArray[j][i] / 10
+        if (newArray[j][i] % 10 == 0) {
+          while (newArray[j][i] % 10 == 0 && newArray[j][i] != 0) {
+            newArray[j][i] = newArray[j][i] / 10
+          }
+          sumPoint += newArray[j][i]
         }
-        setScore(prev => prev + newArray[j][i])
       }
 
     }
 
+    setScore(prev => prev + sumPoint)
     setArray([...newArray])
   }
 
