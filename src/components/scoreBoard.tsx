@@ -1,5 +1,5 @@
 const ScoreBoard = ({ score, highScore }: { score: number, highScore: number }) => {
-  return <div className="flex text-white w-[300px] justify-between mb-[60px]">
+  return <div className="flex text-white w-[300px] justify-between">
     <div className="bg-[#1e242b] w-[130px] flex justify-center items-center flex-col py-[10px] rounded-lg">
       <p className="text-center text-[#ab4459] text-[20px]">Score</p>
       <p className="text-center text-[#ab4459] text-[24px] font-bold">{score}</p>

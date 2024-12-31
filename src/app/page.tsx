@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import NewGameButton from "@/components/newGameButton";
 import Controller from "@/components/controller";
 import createRandomArray from "@/utils/createRandomArray";
+import GameOver from "@/components/gameOver";
 export default function Home() {
 
   const [gameState, setGameState] = useState<"start" | "end">("start")
@@ -17,11 +18,16 @@ export default function Home() {
       setHighScore(score)
     }
   }, [gameState])
-  return <div className="h-screen w-screen flex flex-col justify-center items-center bg-black">
+  return <div className="h-screen w-screen flex flex-col justify-center items-center gap-[30px] bg-black">
     <ScoreBoard score={score} highScore={highScore} />
     <Board array={array} />
     <NewGameButton setScore={setScore} setGameState={setGameState} setArray={setArray} />
     {gameState == "start" && <Controller array={array} setArray={setArray} setScore={setScore} setGameState={setGameState} />}
+    {gameState == "end" &&
+      <GameOver>
+        <ScoreBoard score={score} highScore={highScore} />
+        <NewGameButton setScore={setScore} setGameState={setGameState} setArray={setArray} />
+      </GameOver>}
   </div>
 }
 
