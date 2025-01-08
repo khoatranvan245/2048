@@ -2,7 +2,6 @@
 import findZeroSquare from "@/utils/findZeroSquare"
 import { useEffect } from "react"
 const Controller = ({ array, setArray, setScore, setGameState }: { array: number[][], setArray: React.Dispatch<React.SetStateAction<number[][]>>, setScore: React.Dispatch<React.SetStateAction<number>>, setGameState: React.Dispatch<React.SetStateAction<"start" | "end">> }) => {
-
   const leftButtonAction = () => {
     const newArray = array
     let sumPoint = 0
@@ -31,6 +30,7 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
         }
       }
     }
+    // comment 1234556523
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
   }
