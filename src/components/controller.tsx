@@ -30,9 +30,9 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
         }
       }
     }
-    // comment 1234556523
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
+    // hello this is a comment
   }
 
   const rightButtonAction = () => {
