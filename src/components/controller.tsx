@@ -5,6 +5,7 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
   const leftButtonAction = () => {
     const newArray = array
     let sumPoint = 0
+    let moveCount = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = 0; j < newArray[i].length; j++) {
@@ -12,11 +13,13 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
           if (newArray[i][k] != 0 && newArray[i][k - 1] == 0) {
             newArray[i][k - 1] = newArray[i][k]
             newArray[i][k] = 0
+            moveCount++
           }
-          if (newArray[i][k] == newArray[i][k - 1]) {
+          if (newArray[i][k] == newArray[i][k - 1] && newArray[i][k] != 0) {
             sumCount++
             newArray[i][k - 1] *= 2 * Math.pow(10, sumCount)
             newArray[i][k] = 0
+            moveCount++
           }
         }
       }
@@ -32,12 +35,13 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
     }
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
-    // hello this is a comment
+    if (moveCount != 0) generateRandomSquare()
   }
 
   const rightButtonAction = () => {
     const newArray = array
     let sumPoint = 0
+    let moveCount = 0
 
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
@@ -47,10 +51,11 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
             newArray[i][k + 1] = newArray[i][k]
             newArray[i][k] = 0
           }
-          if (newArray[i][k] == newArray[i][k + 1]) {
+          if (newArray[i][k] == newArray[i][k + 1] && newArray[i][k]) {
             sumCount++
             newArray[i][k + 1] *= 2 * Math.pow(10, sumCount)
             newArray[i][k] = 0
+            moveCount++
           }
         }
       }
@@ -67,11 +72,13 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
 
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
+    if (moveCount != 0) generateRandomSquare()
   }
 
   const downButtonAction = () => {
     const newArray = array
     let sumPoint = 0
+    let moveCount = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = newArray.length - 1; j >= 0; j--) {
@@ -84,6 +91,7 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
             sumCount++
             newArray[k + 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
+            moveCount++
           }
         }
       }
@@ -100,11 +108,13 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
 
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
+    if (moveCount != 0) generateRandomSquare()
   }
 
   const upButtonAction = () => {
     const newArray = array
     let sumPoint = 0
+    let moveCount = 0
     for (let i = 0; i < newArray.length; i++) {
       let sumCount = 0
       for (let j = 0; j < newArray.length; j++) {
@@ -117,6 +127,7 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
             sumCount++
             newArray[k - 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
+            moveCount++
           }
         }
       }
@@ -134,6 +145,7 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
 
     setScore(prev => prev + sumPoint)
     setArray([...newArray])
+    if (moveCount != 0) generateRandomSquare()
   }
 
   const generateRandomSquare = () => {
@@ -156,19 +168,19 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
       switch (key) {
         case "ArrowLeft":
           leftButtonAction()
-          generateRandomSquare()
+          // generateRandomSquare()
           break
         case "ArrowRight":
           rightButtonAction()
-          generateRandomSquare()
+          // generateRandomSquare()
           break
         case "ArrowDown":
           downButtonAction()
-          generateRandomSquare()
+          // generateRandomSquare()
           break
         case "ArrowUp":
           upButtonAction()
-          generateRandomSquare()
+          // generateRandomSquare()
           break
       }
     }
