@@ -50,8 +50,9 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
           if (newArray[i][k] != 0 && newArray[i][k + 1] == 0) {
             newArray[i][k + 1] = newArray[i][k]
             newArray[i][k] = 0
+            moveCount++
           }
-          if (newArray[i][k] == newArray[i][k + 1] && newArray[i][k]) {
+          if (newArray[i][k] == newArray[i][k + 1] && newArray[i][k] != 0) {
             sumCount++
             newArray[i][k + 1] *= 2 * Math.pow(10, sumCount)
             newArray[i][k] = 0
@@ -86,8 +87,9 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
           if (newArray[k][i] != 0 && newArray[k + 1][i] == 0) {
             newArray[k + 1][i] = newArray[k][i]
             newArray[k][i] = 0
+            moveCount++
           }
-          if (newArray[k][i] == newArray[k + 1][i]) {
+          if (newArray[k][i] == newArray[k + 1][i] && newArray[k][i] != 0) {
             sumCount++
             newArray[k + 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
@@ -122,8 +124,9 @@ const Controller = ({ array, setArray, setScore, setGameState }: { array: number
           if (newArray[k][i] != 0 && newArray[k - 1][i] == 0) {
             newArray[k - 1][i] = newArray[k][i]
             newArray[k][i] = 0
+            moveCount++
           }
-          if (newArray[k][i] == newArray[k - 1][i]) {
+          if (newArray[k][i] == newArray[k - 1][i] && newArray[k][i] != 0) {
             sumCount++
             newArray[k - 1][i] *= 2 * Math.pow(10, sumCount)
             newArray[k][i] = 0
